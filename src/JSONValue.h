@@ -47,6 +47,7 @@ class JSONValue
 		JSONValue(const JSONArray &m_array_value);
 		JSONValue(const JSONObject &m_object_value);
 		JSONValue(const JSONValue &m_source);
+		JSONValue& operator= (const JSONValue &m_source);
 		~JSONValue();
 
 		bool IsNull() const;
@@ -74,6 +75,7 @@ class JSONValue
 		static JSONValue *Parse(const wchar_t **data);
 
 	private:
+		void DeepAssignment (const JSONValue &source);
 		static std::wstring StringifyString(const std::wstring &str);
 		std::wstring StringifyImpl(size_t const indentDepth) const;
 		static std::wstring Indent(size_t depth);
